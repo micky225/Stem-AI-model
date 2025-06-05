@@ -24,11 +24,11 @@ def validate_input(data):
 
 
 
-def detect_strengths_weaknesses(data, top_n=2, bottom_n=2):
-    sorted_items = sorted(data.items(), key=lambda item: item[1], reverse=True)
-    strengths = [subject for subject, score in sorted_items[:top_n]]
-    weaknesses = [subject for subject, score in sorted_items[-bottom_n:]]
+def detect_strengths_weaknesses(data, strength_threshold=4, weakness_threshold=2):
+    strengths = [subject for subject, score in data.items() if score >= strength_threshold]
+    weaknesses = [subject for subject, score in data.items() if score <= weakness_threshold]
     return strengths, weaknesses
+
 
 
 
